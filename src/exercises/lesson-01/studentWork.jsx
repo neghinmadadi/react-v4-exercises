@@ -16,7 +16,6 @@ export default function StudentWork() {
       <h1>About Me</h1>
 
       <p>
-        {' '}
         My name is {myName} and I{"'"}m in my {myAge}s. I took Intro to
         Programming last term and I{"'"}m excited to keep building on it with
         React this term. My goal is to become a full-stack software developer
