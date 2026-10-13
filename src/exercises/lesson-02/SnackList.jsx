@@ -10,6 +10,7 @@ function SnackList() {
   const sortedSnackList = snackList.toSorted(
     (firstSnack, secondSnack) => firstSnack.rank - secondSnack.rank
   );
+
   return (
     <ul>
       {sortedSnackList.map((snack) => (
