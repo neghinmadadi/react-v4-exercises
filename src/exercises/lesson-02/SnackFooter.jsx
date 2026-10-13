@@ -1,12 +1,12 @@
 function SnackFooter() {
   /** create date obj to add to the footer */
-  const today = new Date();
-  const thisYear = today.getFullYear();
+  const thisYear = new Date().getFullYear();
 
   return (
     <footer>
       <small>
-        {`Copyright \u00A9 ${thisYear} Don't you dare touch my snacks!`}
+        Copyright © {thisYear} Don&apos;t You Dare Touch My Snacks! All Rights
+        Reserved.
       </small>
     </footer>
   );

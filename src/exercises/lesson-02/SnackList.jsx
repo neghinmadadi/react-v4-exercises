@@ -1,7 +1,8 @@
 function SnackList() {
   /* create an array of snacl objs */
   const snackList = [
-    { name: 'Potato Chips', rank: 3 },
+    { name: 'Cookies', rank: 3 },
+    { name: 'Potato Chips', rank: 4 },
     { name: 'Pistachios', rank: 2 },
     { name: 'Chocolate', rank: 1 },
   ];
