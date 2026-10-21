@@ -10,11 +10,10 @@
 
 import { useState } from 'react';
 export default function BugMutatedState() {
-  let [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   function handleAdd() {
-    count++;
-    setCount(count);
+    setCount((previous) => previous + 1);
   }
 
   return (
@@ -27,3 +26,4 @@ export default function BugMutatedState() {
 
 // Explanation:
 // (Write your explanation here)
+/** The problem is that the count is getting directly mutated by count++. In React, state must be treated as immutable since React relies on comparing the old state value to the new state value to decide whether to update the screen. To fix this, a functional update is used in setCount: previous => previous+1. This way, the new state value is calculated without directly altering the original state variable.*/
