@@ -1,5 +1,7 @@
 // src/exercises/lesson-03/BugProps.jsx
 
+import { useState } from 'react';
+
 /*
   BUG #3 — Props Not Updating
 
@@ -13,10 +15,10 @@
 */
 
 export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+  const [message, setMessage] = useState(`Hello, ${name}`);
 
   function handleChange() {
-    message = 'Hi, ' + name + '!';
+    setMessage(`Hi, ${name}!`);
   }
 
   return (
@@ -29,3 +31,4 @@ export default function BugProps({ name = 'friend' }) {
 
 // Explanation:
 // (Write your explanation here)
+/** The issue is that the message is defined as a local variable and React can't track changes to its value. To fix this, message and setMessage are defined as the component's state and state setter respectively. Then, setMessage is called in the handleChange function to replace the previous state value with the new value. This call makes React re-render the component, so when the user clicks the Change Greeting button, the page updates. Note, in this approach, the message is copied from name only once, so it won't update if the parent passes a new name. */
