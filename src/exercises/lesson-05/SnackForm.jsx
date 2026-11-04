@@ -7,6 +7,11 @@ export default function SnackForm({
   updateSnack,
   className,
 }) {
+  const [name, setName] = useState('');
+  const [rating, setRating] = useState('');
+  // track which fields has user interacted with
+  const [toched, setTouched] = useState({ name: false, rating: false });
+
   const isEditing = Boolean(editingSnack);
 
   function handleSubmit(e) {
