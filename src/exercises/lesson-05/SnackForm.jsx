@@ -26,6 +26,26 @@ export default function SnackForm({
     setTouched({ name: false, rating: false });
   }, [editingSnack]);
 
+  function validateName() {
+    return name.trim();
+  }
+
+  function validateRating() {
+    return Number(rating.trim());
+  }
+
+  function getNameError() {
+    if (!validateName) {
+      return 'Snack name is required';
+    }
+  }
+
+  function getRatingError() {
+    if (!validateRating) {
+      return 'Please select a rating';
+    }
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     // const formData = new FormData(e.target);
@@ -59,28 +79,28 @@ export default function SnackForm({
           onFocus={() =>
             setTouched((previous) => ({ ...previous, name: true }))
           }
-          required
           className={styles['field-input']}
           placeholder="Enter snack name"
         />
       </div>
 
       <div className={styles['field-container']}>
-        <label className={styles['field-label']}>Rating:</label>
-        <input
-          type="number"
-          name="rating"
-          value={rating}
-          onChange={(event) => setRating(event.target.value)}
-          onFocus={() =>
-            setTouched((previous) => ({ ...previous, rating: true }))
-          }
-          required
-          min="1"
-          max="5"
-          className={styles['field-input']}
-          placeholder="Rate 1-5"
-        />
+        <label className={styles['field-label']}>
+          Rating:
+          <input
+            type="number"
+            name="rating"
+            value={rating}
+            onChange={(event) => setRating(event.target.value)}
+            onFocus={() =>
+              setTouched((previous) => ({ ...previous, rating: true }))
+            }
+            min="1"
+            max="5"
+            className={styles['field-input']}
+            placeholder="Rate 1-5"
+          />
+        </label>
       </div>
 
       <div className={styles['button-container']}>
