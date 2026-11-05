@@ -1,4 +1,5 @@
 import styles from './SnackForm.module.css';
+import { useEffect, useState } from 'react';
 
 export default function SnackForm({
   addSnack,
@@ -10,22 +11,33 @@ export default function SnackForm({
   const [name, setName] = useState('');
   const [rating, setRating] = useState('');
   // track which fields has user interacted with
-  const [toched, setTouched] = useState({ name: false, rating: false });
+  const [touched, setTouched] = useState({ name: false, rating: false });
 
   const isEditing = Boolean(editingSnack);
 
+  useEffect(() => {
+    if (editingSnack) {
+      setName(editingSnack.name);
+      setRating(editingSnack.rating);
+    } else {
+      setName('');
+      setRating('');
+    }
+    setTouched({ name: false, rating: false });
+  }, [editingSnack]);
+
   function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const name = formData.get('name');
-    const rating = formData.get('rating');
+    // const formData = new FormData(e.target);
+    // const name = formData.get('name');
+    // const rating = formData.get('rating');
 
-    if (isEditing) {
-      updateSnack(editingSnack.id, name, rating);
-    } else {
-      addSnack(name, rating);
-      e.target.reset();
-    }
+    // if (isEditing) {
+    //   updateSnack(editingSnack.id, name, rating);
+    // } else {
+    //   addSnack(name, rating);
+    //   e.target.reset();
+    // }
   }
 
   return (
