@@ -27,24 +27,27 @@ export default function SnackForm({
   }, [editingSnack]);
 
   function validateName() {
-    return name.trim();
+    return name.trim().length > 0;
   }
 
   function validateRating() {
-    return Number(rating.trim());
+    return Number(rating) > 0 && Number(rating) < 6;
   }
 
   function getNameError() {
-    if (!validateName) {
+    if (!validateName() && touched.name) {
       return 'Snack name is required';
     }
   }
 
   function getRatingError() {
-    if (!validateRating) {
-      return 'Please select a rating';
+    if (!validateRating() && touched.rating) {
+      return 'Please select a rating between 1 to 5';
     }
   }
+
+  const nameErrorMessage = getNameError();
+  const ratingErrorMessage = getRatingError();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -70,18 +73,23 @@ export default function SnackForm({
       </h3>
 
       <div className={styles['field-container']}>
-        <label className={styles['field-label']}>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          onFocus={() =>
-            setTouched((previous) => ({ ...previous, name: true }))
-          }
-          className={styles['field-input']}
-          placeholder="Enter snack name"
-        />
+        <label className={styles['field-label']}>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            onFocus={() =>
+              setTouched((previous) => ({ ...previous, name: true }))
+            }
+            className={styles['field-input']}
+            placeholder="Enter snack name"
+          />
+        </label>
+        {nameErrorMessage && (
+          <div className={styles.error}>{nameErrorMessage}</div>
+        )}
       </div>
 
       <div className={styles['field-container']}>
@@ -101,6 +109,9 @@ export default function SnackForm({
             placeholder="Rate 1-5"
           />
         </label>
+        {ratingErrorMessage && (
+          <div className={styles.error}>{ratingErrorMessage}</div>
+        )}
       </div>
 
       <div className={styles['button-container']}>
