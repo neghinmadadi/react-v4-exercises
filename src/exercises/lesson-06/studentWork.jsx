@@ -1,6 +1,22 @@
 import { useEffect, useState } from 'react';
 
 import UserProfile from './components/UserProfile.jsx';
+import TaskFilterButtons from './components/TaskFilterButtons.jsx';
+
+const filterObjects = [
+  {
+    filterValue: 'all',
+    label: 'All',
+  },
+  {
+    filterValue: 'completed',
+    label: 'Completed',
+  },
+  {
+    filterValue: 'pending',
+    label: 'Pending',
+  },
+];
 
 export default function StudentWork() {
   const [tasks, setTasks] = useState([]);
@@ -38,12 +54,12 @@ export default function StudentWork() {
     <div>
       <UserProfile name={'Student'} />
 
-      {/* #4: Repeated button JSX */}
       <div>
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('completed')}>Completed</button>
-        <button onClick={() => setFilter('pending')}>Pending</button>
-        <p>Current filter: {filter}</p>
+        <TaskFilterButtons
+          options={filterObjects}
+          currentFilter={filter}
+          onFilterChange={setFilter}
+        />
       </div>
 
       {/* #5: Inline list rendering */}
