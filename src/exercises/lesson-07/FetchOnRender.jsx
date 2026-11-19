@@ -1,5 +1,7 @@
 import './Lesson07Styles.css';
 
+import { getPosts } from './api.js';
+
 export default function FetchOnRender() {
   return (
     <div className="root">
