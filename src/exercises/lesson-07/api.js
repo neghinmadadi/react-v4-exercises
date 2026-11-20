@@ -44,7 +44,7 @@ export async function getPosts() {
  * - title
  * - body
  */
-export function getSinglePost(postId) {
+export async function getSinglePost(postId) {
   if (!postId) {
     throw new Error('[getSinglePost]: postId parameter is required!');
   }
@@ -53,7 +53,12 @@ export function getSinglePost(postId) {
 
   // TODO: use this `url` const to fetch the single post
   // and return some JSON data.
-  // You may delete this comment once you've finished the implementation.
-  // eslint-disable-next-line no-unused-vars
   const url = `${POSTS_ENDPOINT}${postId}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch data: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
 }
