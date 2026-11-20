@@ -44,6 +44,7 @@ export default function FetchOnRender() {
     <div className="root">
       <h1 className="heading">Fetch list of posts on render</h1>
       {isDataLoading && <p>Loading posts...</p>}
+      {error && <div role="alert">{error}</div>}
       <div className="content">
         <ul>
           {posts.map((post) => (
