@@ -4,11 +4,8 @@ import './Lesson07Styles.css';
 import { getPosts } from './api.js';
 
 export default function FetchOnRender() {
-  // define a state to store fetched posts
   const [posts, setPosts] = useState([]);
-  // state to store error
   const [error, setError] = useState('');
-  // state to store the loading state
   const [isDataLoading, setIsDataLoading] = useState(true);
 
   useEffect(() => {
