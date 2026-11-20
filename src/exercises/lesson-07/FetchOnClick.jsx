@@ -4,7 +4,7 @@ import { getSinglePost } from './api.js';
 import { useState } from 'react';
 
 export default function FetchOnClick() {
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState(null);
   const [error, setError] = useState('');
   const [isDataLoading, setIsDataLoading] = useState(false);
 
@@ -27,7 +27,9 @@ export default function FetchOnClick() {
   return (
     <div className="root">
       <h1 className="heading">Fetch single post on click</h1>
-      <button type="button" onClick={handleGetData}>
+      {isDataLoading && <p>Loading post...</p>}
+      {error && <div role="alert">{error}</div>}
+      <button type="button" onClick={handleGetData} disabled={isDataLoading}>
         Get post
       </button>
       <div className="content">

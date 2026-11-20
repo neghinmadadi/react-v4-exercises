@@ -51,8 +51,6 @@ export async function getSinglePost(postId) {
 
   console.log('[getSinglePost]: fetching post with id:', postId);
 
-  // TODO: use this `url` const to fetch the single post
-  // and return some JSON data.
   const url = `${POSTS_ENDPOINT}${postId}`;
   const response = await fetch(url);
   if (!response.ok) {
