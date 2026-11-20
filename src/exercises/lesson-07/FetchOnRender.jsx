@@ -44,7 +44,14 @@ export default function FetchOnRender() {
     <div className="root">
       <h1 className="heading">Fetch list of posts on render</h1>
       <div className="content">
-        TODO: Replace me with fetched data when the component renders
+        <ul>
+          {posts.map((post) => (
+            <li key={post.id}>
+              <h2>{post.title}</h2>
+              <p>{post.body}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
