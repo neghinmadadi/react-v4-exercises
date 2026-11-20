@@ -25,19 +25,17 @@ const POSTS_ENDPOINT = 'https://jsonplaceholder.typicode.com/posts/';
 export async function getPosts() {
   console.log('[getPosts]: fetching list of posts');
 
-  // TODO: use this `url` const to fetch the list of posts
-  // and return some JSON data.
-  // You may delete this comment once you've finished the implementation.
-  // eslint-disable-next-line no-unused-vars
-  const url = POSTS_ENDPOINT;
+  const numberOfPosts = 10;
+  const url = `${POSTS_ENDPOINT}?_limit=${numberOfPosts}`;
 
-  const response = await fetch(`${POSTS_ENDPOINT}?_limit=10`);
-  // console.log(response);
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch data: ${response.status}`);
+  }
+
   const data = await response.json();
-  // console.log(data);
   return data;
 }
-getPosts();
 
 /**
  * Should return a single post object with the following properties:
