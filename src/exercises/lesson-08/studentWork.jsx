@@ -22,24 +22,17 @@ export default function StudentWork() {
 
   const allGenres = getAllGenres();
 
-  // TODO #1: Optimize this search handler with useCallback
-  // This function is recreated on every render, causing BookCard re-renders
   const handleSearch = useCallback((e) => {
     setSearchTerm(e.target.value);
   }, []);
-  // const handleSearch = (e) => {
-  //   setSearchTerm(e.target.value);
-  // };
 
-  // TODO #2: Optimize this favorite toggle handler with useCallback
-  // This function is recreated on every render, causing BookCard re-renders
-  const handleToggleFavorite = (bookId) => {
+  const handleToggleFavorite = useCallback((bookId) => {
     setFavorites((prev) =>
       prev.includes(bookId)
         ? prev.filter((id) => id !== bookId)
         : [...prev, bookId]
     );
-  };
+  }, []);
 
   const handleGenreToggle = (genre) => {
     setSelectedGenres((prev) =>
