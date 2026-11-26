@@ -11,7 +11,6 @@ function BookList({ books, sortBy, favorites, onToggleFavorite }) {
   const { count } = useRenderCounter('BookList');
 
   const sortedBooks = useMemo(() => {
-    console.log(`Sorting ${books.length} books by ${sortBy}`);
     const filteredBooks = books.toSorted((a, b) => {
       switch (sortBy) {
         case 'title':
